@@ -1,0 +1,242 @@
+pyspark --master yarn --deploy-mode client --num-executors 7 --executor-cores 2 --conf spark.sql.warehouse.dir=hdfs://master:9000/user/hive/warehouse
+[TerminalIPythonApp] WARNING | Subcommand `ipython notebook` is deprecated and will be removed in future versions.
+[TerminalIPythonApp] WARNING | You likely want to use `jupyter notebook` in the future
+[I 01:45:37.342 NotebookApp] Writing notebook server cookie secret to /run/user/1000/jupyter/notebook_cookie_secret
+[W 01:45:37.363 NotebookApp] WARNING: The notebook server is listening on all IP addresses and not using encryption. This is not recommended.
+[I 01:45:37.478 NotebookApp] Serving notebooks from local directory: /home/ubuntu/gtest/pySpark-Hive-sql
+[I 01:45:37.478 NotebookApp] 0 active kernels 
+[I 01:45:37.478 NotebookApp] The Jupyter Notebook is running at: http://[all ip addresses on your system]:1427/
+[I 01:45:37.478 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[I 01:45:39.233 NotebookApp] 302 GET / (218.241.251.148) 0.58ms
+[I 01:45:39.384 NotebookApp] 302 GET /tree? (218.241.251.148) 1.02ms
+[I 01:45:44.238 NotebookApp] 302 POST /login?next=%2Ftree%3F (218.241.251.148) 1.13ms
+[W 01:45:50.851 NotebookApp] Notebook My+Python+Notebook..ipynb is not trusted
+[I 01:45:51.978 NotebookApp] Kernel started: 842bbb49-0c89-43cd-a6d9-9d4673f8aa43
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+17/06/15 01:45:58 WARN yarn.Client: Neither spark.yarn.jars nor spark.yarn.archive is set, falling back to uploading libraries under SPARK_HOME.
+[W 01:46:03.392 NotebookApp] Timeout waiting for kernel_info reply from 842bbb49-0c89-43cd-a6d9-9d4673f8aa43
+17/06/15 01:46:36 WARN metastore.ObjectStore: Failed to get database global_temp, returning NoSuchObjectException
+[I 01:47:52.455 NotebookApp] Saving file at /My+Python+Notebook..ipynb
+[W 01:47:52.456 NotebookApp] Saving untrusted notebook My+Python+Notebook..ipynb
+[I 01:49:52.715 NotebookApp] Saving file at /My+Python+Notebook..ipynb
+[W 01:49:52.717 NotebookApp] Saving untrusted notebook My+Python+Notebook..ipynb
+17/06/15 01:51:07 ERROR command.CreateDataSourceTableAsSelectCommand: Failed to write to table default.df3 in ErrorIfExists mode
+org.apache.spark.sql.AnalysisException: path hdfs://master:9000/user/hive/warehouse already exists.;
+	at org.apache.spark.sql.execution.datasources.InsertIntoHadoopFsRelationCommand.run(InsertIntoHadoopFsRelationCommand.scala:80)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult$lzycompute(commands.scala:58)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult(commands.scala:56)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.doExecute(commands.scala:74)
+	at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:114)
+	at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:114)
+	at org.apache.spark.sql.execution.SparkPlan$$anonfun$executeQuery$1.apply(SparkPlan.scala:135)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+	at org.apache.spark.sql.execution.SparkPlan.executeQuery(SparkPlan.scala:132)
+	at org.apache.spark.sql.execution.SparkPlan.execute(SparkPlan.scala:113)
+	at org.apache.spark.sql.execution.QueryExecution.toRdd$lzycompute(QueryExecution.scala:92)
+	at org.apache.spark.sql.execution.QueryExecution.toRdd(QueryExecution.scala:92)
+	at org.apache.spark.sql.execution.datasources.DataSource.writeInFileFormat(DataSource.scala:484)
+	at org.apache.spark.sql.execution.datasources.DataSource.writeAndRead(DataSource.scala:500)
+	at org.apache.spark.sql.execution.command.CreateDataSourceTableAsSelectCommand.run(createDataSourceTables.scala:263)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult$lzycompute(commands.scala:58)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult(commands.scala:56)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.doExecute(commands.scala:74)
+	at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:114)
+	at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:114)
+	at org.apache.spark.sql.execution.SparkPlan$$anonfun$executeQuery$1.apply(SparkPlan.scala:135)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+	at org.apache.spark.sql.execution.SparkPlan.executeQuery(SparkPlan.scala:132)
+	at org.apache.spark.sql.execution.SparkPlan.execute(SparkPlan.scala:113)
+	at org.apache.spark.sql.execution.QueryExecution.toRdd$lzycompute(QueryExecution.scala:92)
+	at org.apache.spark.sql.execution.QueryExecution.toRdd(QueryExecution.scala:92)
+	at org.apache.spark.sql.DataFrameWriter.saveAsTable(DataFrameWriter.scala:404)
+	at org.apache.spark.sql.DataFrameWriter.saveAsTable(DataFrameWriter.scala:358)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+	at py4j.Gateway.invoke(Gateway.java:280)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.GatewayConnection.run(GatewayConnection.java:214)
+	at java.lang.Thread.run(Thread.java:748)
+[I 01:51:52.730 NotebookApp] Saving file at /My+Python+Notebook..ipynb
+[W 01:51:52.732 NotebookApp] Saving untrusted notebook My+Python+Notebook..ipynb
+[I 01:52:53.041 NotebookApp] Kernel interrupted: 842bbb49-0c89-43cd-a6d9-9d4673f8aa43
+17/06/15 01:53:07 ERROR netty.Inbox: Ignoring error
+org.apache.spark.SparkException: Could not find CoarseGrainedScheduler.
+	at org.apache.spark.rpc.netty.Dispatcher.postMessage(Dispatcher.scala:154)
+	at org.apache.spark.rpc.netty.Dispatcher.postOneWayMessage(Dispatcher.scala:134)
+	at org.apache.spark.rpc.netty.NettyRpcEnv.send(NettyRpcEnv.scala:186)
+	at org.apache.spark.rpc.netty.NettyRpcEndpointRef.send(NettyRpcEnv.scala:512)
+	at org.apache.spark.scheduler.cluster.CoarseGrainedSchedulerBackend.reviveOffers(CoarseGrainedSchedulerBackend.scala:406)
+	at org.apache.spark.scheduler.TaskSchedulerImpl.executorLost(TaskSchedulerImpl.scala:518)
+	at org.apache.spark.scheduler.cluster.CoarseGrainedSchedulerBackend$DriverEndpoint.disableExecutor(CoarseGrainedSchedulerBackend.scala:327)
+	at org.apache.spark.scheduler.cluster.YarnSchedulerBackend$YarnDriverEndpoint$$anonfun$onDisconnected$1.apply(YarnSchedulerBackend.scala:201)
+	at org.apache.spark.scheduler.cluster.YarnSchedulerBackend$YarnDriverEndpoint$$anonfun$onDisconnected$1.apply(YarnSchedulerBackend.scala:200)
+	at scala.Option.foreach(Option.scala:257)
+	at org.apache.spark.scheduler.cluster.YarnSchedulerBackend$YarnDriverEndpoint.onDisconnected(YarnSchedulerBackend.scala:200)
+	at org.apache.spark.rpc.netty.Inbox$$anonfun$process$1.apply$mcV$sp(Inbox.scala:143)
+	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:205)
+	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:101)
+	at org.apache.spark.rpc.netty.Dispatcher$MessageLoop.run(Dispatcher.scala:213)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+[I 01:53:08.134 NotebookApp] Kernel restarted: 842bbb49-0c89-43cd-a6d9-9d4673f8aa43
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+17/06/15 01:53:13 WARN yarn.Client: Neither spark.yarn.jars nor spark.yarn.archive is set, falling back to uploading libraries under SPARK_HOME.
+[I 01:53:21.960 NotebookApp] Kernel restarted: 842bbb49-0c89-43cd-a6d9-9d4673f8aa43
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+17/06/15 01:53:30 WARN yarn.Client: Neither spark.yarn.jars nor spark.yarn.archive is set, falling back to uploading libraries under SPARK_HOME.
+[W 01:53:38.137 NotebookApp] Timeout waiting for kernel_info_reply: 842bbb49-0c89-43cd-a6d9-9d4673f8aa43
+[E 01:53:38.137 NotebookApp] Exception restarting kernel
+    Traceback (most recent call last):
+      File "/home/ubuntu/anaconda2/lib/python2.7/site-packages/notebook/services/kernels/handlers.py", line 88, in post
+        yield gen.maybe_future(km.restart_kernel(kernel_id))
+      File "/home/ubuntu/anaconda2/lib/python2.7/site-packages/tornado/gen.py", line 1015, in run
+        value = future.result()
+      File "/home/ubuntu/anaconda2/lib/python2.7/site-packages/tornado/concurrent.py", line 237, in result
+        raise_exc_info(self._exc_info)
+      File "<string>", line 3, in raise_exc_info
+    TimeoutError: Timeout waiting for restart
+[E 01:53:38.991 NotebookApp] {
+      "Origin": "http://master:1427", 
+      "Content-Length": "0", 
+      "Accept-Language": "zh-CN,zh;q=0.8", 
+      "Accept-Encoding": "gzip, deflate", 
+      "X-Xsrftoken": "2|6237718a|7f9b03090f132543cb962e3738272d70|1495416679", 
+      "Host": "master:1427", 
+      "Accept": "application/json, text/javascript, */*; q=0.01", 
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36", 
+      "Connection": "keep-alive", 
+      "X-Requested-With": "XMLHttpRequest", 
+      "Referer": "http://master:1427/notebooks/My%2BPython%2BNotebook..ipynb", 
+      "Cookie": "_xsrf=2|6237718a|7f9b03090f132543cb962e3738272d70|1495416679; username-master-1429=\"2|1:0|10:1497256636|20:username-master-1429|44:ZjY1M2UwYWIyNmQzNDNiOWE2NGIyY2QxODIwMTRiZDU=|e18c1341d4d3f4a1a2c918346483b07140f569dcb837be50bcf03f3e5ab196cc\"; username-master-1428=\"2|1:0|10:1497405804|20:username-master-1428|44:MmFmNDQyMmNiODFjNDU0Yjg5NWFiOTgzNmQ5NDU2ODI=|667306a9026af505ccd50a754835503e02377757438a113517c1fc02e9f5128b\"; username-master-1427=\"2|1:0|10:1497491144|20:username-master-1427|44:NzQwNmUyYmY1YzYwNDFkMDk3ZjAzZWJlNWQxYmIyNzc=|4ee3ee3bb9bc7738dedc7c9c4b60a47ec552c133ba595ff094e7f8a1a26512f5\""
+    }
+[E 01:53:38.991 NotebookApp] 500 POST /api/kernels/842bbb49-0c89-43cd-a6d9-9d4673f8aa43/restart (218.241.251.148) 31662.90ms referer=http://master:1427/notebooks/My%2BPython%2BNotebook..ipynb
+[I 01:53:40.088 NotebookApp] Kernel shutdown: 842bbb49-0c89-43cd-a6d9-9d4673f8aa43
+[W 01:53:41.040 NotebookApp] Session not found: session_id=u'4e2fdd87-724b-4ff4-949d-69cb2176e12b'
+[W 01:53:41.040 NotebookApp] 404 DELETE /api/sessions/4e2fdd87-724b-4ff4-949d-69cb2176e12b (218.241.251.148) 2.40ms referer=http://master:1427/notebooks/My%2BPython%2BNotebook..ipynb
+[I 01:53:41.125 NotebookApp] Kernel started: 284e8765-d3df-409c-a74d-8dca0f3f0d9f
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+17/06/15 01:53:46 WARN yarn.Client: Neither spark.yarn.jars nor spark.yarn.archive is set, falling back to uploading libraries under SPARK_HOME.
+[W 01:53:51.317 NotebookApp] Timeout waiting for kernel_info reply from 284e8765-d3df-409c-a74d-8dca0f3f0d9f
+[W 01:53:51.962 NotebookApp] Timeout waiting for kernel_info_reply: 842bbb49-0c89-43cd-a6d9-9d4673f8aa43
+[E 01:53:51.962 NotebookApp] Exception restarting kernel
+    Traceback (most recent call last):
+      File "/home/ubuntu/anaconda2/lib/python2.7/site-packages/notebook/services/kernels/handlers.py", line 88, in post
+        yield gen.maybe_future(km.restart_kernel(kernel_id))
+      File "/home/ubuntu/anaconda2/lib/python2.7/site-packages/tornado/gen.py", line 1015, in run
+        value = future.result()
+      File "/home/ubuntu/anaconda2/lib/python2.7/site-packages/tornado/concurrent.py", line 237, in result
+        raise_exc_info(self._exc_info)
+      File "<string>", line 3, in raise_exc_info
+    TimeoutError: Timeout waiting for restart
+[E 01:53:51.963 NotebookApp] {
+      "Origin": "http://master:1427", 
+      "Content-Length": "0", 
+      "Accept-Language": "zh-CN,zh;q=0.8", 
+      "Accept-Encoding": "gzip, deflate", 
+      "X-Xsrftoken": "2|6237718a|7f9b03090f132543cb962e3738272d70|1495416679", 
+      "Host": "master:1427", 
+      "Accept": "application/json, text/javascript, */*; q=0.01", 
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36", 
+      "Connection": "keep-alive", 
+      "X-Requested-With": "XMLHttpRequest", 
+      "Referer": "http://master:1427/notebooks/My%2BPython%2BNotebook..ipynb", 
+      "Cookie": "_xsrf=2|6237718a|7f9b03090f132543cb962e3738272d70|1495416679; username-master-1429=\"2|1:0|10:1497256636|20:username-master-1429|44:ZjY1M2UwYWIyNmQzNDNiOWE2NGIyY2QxODIwMTRiZDU=|e18c1341d4d3f4a1a2c918346483b07140f569dcb837be50bcf03f3e5ab196cc\"; username-master-1428=\"2|1:0|10:1497405804|20:username-master-1428|44:MmFmNDQyMmNiODFjNDU0Yjg5NWFiOTgzNmQ5NDU2ODI=|667306a9026af505ccd50a754835503e02377757438a113517c1fc02e9f5128b\"; username-master-1427=\"2|1:0|10:1497491144|20:username-master-1427|44:NzQwNmUyYmY1YzYwNDFkMDk3ZjAzZWJlNWQxYmIyNzc=|4ee3ee3bb9bc7738dedc7c9c4b60a47ec552c133ba595ff094e7f8a1a26512f5\""
+    }
+[E 01:53:51.963 NotebookApp] 500 POST /api/kernels/842bbb49-0c89-43cd-a6d9-9d4673f8aa43/restart (218.241.251.148) 31012.95ms referer=http://master:1427/notebooks/My%2BPython%2BNotebook..ipynb
+[I 01:53:53.076 NotebookApp] Kernel shutdown: 284e8765-d3df-409c-a74d-8dca0f3f0d9f
+[I 01:53:53.080 NotebookApp] Saving file at /My+Python+Notebook..ipynb
+[W 01:53:53.081 NotebookApp] Saving untrusted notebook My+Python+Notebook..ipynb
+[W 01:53:54.450 NotebookApp] Session not found: session_id=u'b653952d-58dc-442f-aa0b-0e5d5efa0ce1'
+[W 01:53:54.450 NotebookApp] 404 DELETE /api/sessions/b653952d-58dc-442f-aa0b-0e5d5efa0ce1 (218.241.251.148) 1.06ms referer=http://master:1427/notebooks/My%2BPython%2BNotebook..ipynb
+[I 01:53:54.546 NotebookApp] Kernel started: a185e31d-8c84-4727-9dec-e2a7c39092ff
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+17/06/15 01:54:00 WARN yarn.Client: Neither spark.yarn.jars nor spark.yarn.archive is set, falling back to uploading libraries under SPARK_HOME.
+[W 01:54:04.720 NotebookApp] Timeout waiting for kernel_info reply from a185e31d-8c84-4727-9dec-e2a7c39092ff
+[I 01:54:24.547 NotebookApp] Kernel shutdown: a185e31d-8c84-4727-9dec-e2a7c39092ff
+[W 01:54:35.636 NotebookApp] Notebook My+Python+Notebook..ipynb is not trusted
+[I 01:54:36.713 NotebookApp] Kernel started: d74ca269-e32f-435f-9be3-f90a49fb63bb
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+17/06/15 01:54:42 WARN yarn.Client: Neither spark.yarn.jars nor spark.yarn.archive is set, falling back to uploading libraries under SPARK_HOME.
+[W 01:54:46.959 NotebookApp] Timeout waiting for kernel_info reply from d74ca269-e32f-435f-9be3-f90a49fb63bb
+17/06/15 01:55:23 WARN metastore.ObjectStore: Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 1.2.0
+17/06/15 01:55:24 WARN metastore.ObjectStore: Failed to get database default, returning NoSuchObjectException
+17/06/15 01:55:24 WARN metastore.ObjectStore: Failed to get database global_temp, returning NoSuchObjectException
+[Stage 3:>                                                          (0 + 2) / 2][Stage 3:=============================>                             (1 + 1) / 2]                                                                                [I 01:56:32.263 NotebookApp] Kernel interrupted: d74ca269-e32f-435f-9be3-f90a49fb63bb
+[I 01:56:40.277 NotebookApp] Saving file at /My+Python+Notebook..ipynb
+[W 01:56:40.279 NotebookApp] Saving untrusted notebook My+Python+Notebook..ipynb
+[I 01:57:16.740 NotebookApp] Saving file at /My+Python+Notebook..ipynb
+[W 01:57:16.741 NotebookApp] Saving untrusted notebook My+Python+Notebook..ipynb
+17/06/15 01:57:23 WARN metastore.HiveMetaStore: Location: hdfs://master:9000/user/hive/warehouse/df2 specified for non-external table:df2
+[I 01:58:37.463 NotebookApp] Saving file at /My+Python+Notebook..ipynb
+[W 01:58:37.465 NotebookApp] Saving untrusted notebook My+Python+Notebook..ipynb
+17/06/15 01:59:42 WARN command.DropTableCommand: org.apache.spark.sql.catalyst.analysis.NoSuchTableException: Table or view 'images' not found in database 'default';
+org.apache.spark.sql.catalyst.analysis.NoSuchTableException: Table or view 'images' not found in database 'default';
+	at org.apache.spark.sql.hive.client.HiveClient$$anonfun$getTable$1.apply(HiveClient.scala:74)
+	at org.apache.spark.sql.hive.client.HiveClient$$anonfun$getTable$1.apply(HiveClient.scala:74)
+	at scala.Option.getOrElse(Option.scala:121)
+	at org.apache.spark.sql.hive.client.HiveClient$class.getTable(HiveClient.scala:74)
+	at org.apache.spark.sql.hive.client.HiveClientImpl.getTable(HiveClientImpl.scala:78)
+	at org.apache.spark.sql.hive.HiveExternalCatalog$$anonfun$org$apache$spark$sql$hive$HiveExternalCatalog$$getRawTable$1.apply(HiveExternalCatalog.scala:118)
+	at org.apache.spark.sql.hive.HiveExternalCatalog$$anonfun$org$apache$spark$sql$hive$HiveExternalCatalog$$getRawTable$1.apply(HiveExternalCatalog.scala:118)
+	at org.apache.spark.sql.hive.HiveExternalCatalog.withClient(HiveExternalCatalog.scala:97)
+	at org.apache.spark.sql.hive.HiveExternalCatalog.org$apache$spark$sql$hive$HiveExternalCatalog$$getRawTable(HiveExternalCatalog.scala:117)
+	at org.apache.spark.sql.hive.HiveExternalCatalog$$anonfun$getTable$1.apply(HiveExternalCatalog.scala:628)
+	at org.apache.spark.sql.hive.HiveExternalCatalog$$anonfun$getTable$1.apply(HiveExternalCatalog.scala:628)
+	at org.apache.spark.sql.hive.HiveExternalCatalog.withClient(HiveExternalCatalog.scala:97)
+	at org.apache.spark.sql.hive.HiveExternalCatalog.getTable(HiveExternalCatalog.scala:627)
+	at org.apache.spark.sql.hive.HiveMetastoreCatalog.lookupRelation(HiveMetastoreCatalog.scala:124)
+	at org.apache.spark.sql.hive.HiveSessionCatalog.lookupRelation(HiveSessionCatalog.scala:70)
+	at org.apache.spark.sql.SparkSession.table(SparkSession.scala:578)
+	at org.apache.spark.sql.execution.command.DropTableCommand.run(ddl.scala:202)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult$lzycompute(commands.scala:58)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult(commands.scala:56)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.doExecute(commands.scala:74)
+	at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:114)
+	at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:114)
+	at org.apache.spark.sql.execution.SparkPlan$$anonfun$executeQuery$1.apply(SparkPlan.scala:135)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+	at org.apache.spark.sql.execution.SparkPlan.executeQuery(SparkPlan.scala:132)
+	at org.apache.spark.sql.execution.SparkPlan.execute(SparkPlan.scala:113)
+	at org.apache.spark.sql.execution.QueryExecution.toRdd$lzycompute(QueryExecution.scala:92)
+	at org.apache.spark.sql.execution.QueryExecution.toRdd(QueryExecution.scala:92)
+	at org.apache.spark.sql.Dataset.<init>(Dataset.scala:185)
+	at org.apache.spark.sql.Dataset$.ofRows(Dataset.scala:64)
+	at org.apache.spark.sql.SparkSession.sql(SparkSession.scala:592)
+	at sun.reflect.GeneratedMethodAccessor41.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+	at py4j.Gateway.invoke(Gateway.java:280)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.GatewayConnection.run(GatewayConnection.java:214)
+	at java.lang.Thread.run(Thread.java:748)
+[Stage 20:======================================>                   (6 + 3) / 9]                                                                                [I 02:00:38.160 NotebookApp] Saving file at /My+Python+Notebook..ipynb
+[W 02:00:38.161 NotebookApp] Saving untrusted notebook My+Python+Notebook..ipynb
+[I 02:04:38.378 NotebookApp] Saving file at /My+Python+Notebook..ipynb
+[W 02:04:38.379 NotebookApp] Saving untrusted notebook My+Python+Notebook..ipynb
+[I 02:06:39.134 NotebookApp] Saving file at /My+Python+Notebook..ipynb
+[W 02:06:39.135 NotebookApp] Saving untrusted notebook My+Python+Notebook..ipynb
+17/06/15 02:08:34 WARN metastore.HiveMetaStore: Location: hdfs://master:9000/user/hive/warehouse/my_table specified for non-external table:my_table
+[I 02:08:38.210 NotebookApp] Saving file at /My+Python+Notebook..ipynb
+[W 02:08:38.212 NotebookApp] Saving untrusted notebook My+Python+Notebook..ipynb
+[I 02:10:37.387 NotebookApp] Saving file at /My+Python+Notebook..ipynb
+[W 02:10:37.388 NotebookApp] Saving untrusted notebook My+Python+Notebook..ipynb
+[Stage 28:>                                                         (0 + 2) / 2]                                                                                17/06/15 02:11:34 ERROR hdfs.KeyProviderCache: Could not find uri with key [hadoop.security.key.provider.path] to create a keyProvider !!
+[Stage 32:========>                                               (2 + 12) / 14][Stage 32:================>                                       (4 + 10) / 14][Stage 32:====================>                                    (5 + 9) / 14][Stage 32:================================>                        (8 + 6) / 14][Stage 32:================================================>       (12 + 2) / 14]                                                                                [I 02:12:39.699 NotebookApp] Saving file at /My+Python+Notebook..ipynb
+[W 02:12:39.700 NotebookApp] Saving untrusted notebook My+Python+Notebook..ipynb
+[Stage 35:===================================================>      (8 + 1) / 9]                                                                                [Stage 39:============================================>           (11 + 3) / 14][Stage 39:================================================>       (12 + 2) / 14]                                                                                [Stage 42:=====================================================>  (19 + 1) / 20]                                                                                [I 02:14:26.563 NotebookApp] Saving file at /My+Python+Notebook..ipynb
+[W 02:14:26.565 NotebookApp] Saving untrusted notebook My+Python+Notebook..ipynb
