@@ -36,6 +36,8 @@ def test():
     sqlContext = HiveContext(sc)
     ################################################################################
     
+    sqlContext.sql("DROP TABLE images5")
+    
     sqlContext.sql("CREATE EXTERNAL TABLE images5 (id INT COMMENT 'id of images', mat ARRAY<ARRAY<ARRAY<ARRAY<BIGINT>>>> \
     COMMENT 'array of list') COMMENT \
     'This is used to store images' ROW FORMAT DELIMITED \
@@ -56,6 +58,15 @@ def test():
         print '--------------------------%d----------------------------'%num
         print 'the total time is', end_time - start_time
         print 'the average time is', (end_time - start_time)/64.0 /num
+        
+    dataset = sqlContext.sql("SELECT * FROM images5")
+    dataset = dataset.repartition(14)
+    
+    dataset.rdd.mapPartitionsWithIndex(work_train).collect()
+        
+#----------------------------------------------------------------------
+def work_train(worker_id, iterator):
+    yield (worker_id, sum(iterator))
 
 if __name__ == '__main__':
     test()
