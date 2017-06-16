@@ -7,6 +7,10 @@ import time
 import sys
 from generator_images import captcha_generator as gen
 import matplotlib.pyplot as plt
+import os
+sys.path.append(os.getcwd())
+print '\n'.join(sys.path)
+#from wingdb import wingdbstub
 
 def test():
     application_name = "profile test"
@@ -36,7 +40,7 @@ def test():
     sqlContext = HiveContext(sc)
     ################################################################################
     
-    sqlContext.sql("DROP TABLE images5")
+    #sqlContext.sql("DROP TABLE images5")
     
     sqlContext.sql("CREATE EXTERNAL TABLE images5 (id INT COMMENT 'id of images', mat ARRAY<ARRAY<ARRAY<ARRAY<BIGINT>>>> \
     COMMENT 'array of list') COMMENT \
@@ -62,7 +66,15 @@ def test():
     dataset = sqlContext.sql("SELECT * FROM images5")
     dataset = dataset.repartition(14)
     
-    dataset.rdd.mapPartitionsWithIndex(work_train).collect()
+    #dataset.rdd.mapPartitionsWithIndex(work_train).collect()
+    #lines = dataset.rdd.map(toCSVLine)
+    #lines.saveAsTextFile('hdfs://master:9000/tmp/tmp.csv')
+    dataset.write.save("/tmp/tmp.parquet", format="parquet")
+    
+#----------------------------------------------------------------------
+def toCSVLine(data):
+    """"""
+    return ','.join(str(d) for d in data)
         
 #----------------------------------------------------------------------
 def work_train(worker_id, iterator):
