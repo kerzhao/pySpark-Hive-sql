@@ -3,6 +3,7 @@
 from pyspark import SparkConf, SparkContext
 from pyspark.sql import SQLContext
 from pyspark.sql import HiveContext
+from pyspark.sql import Row
 
 import time
 import sys
@@ -31,13 +32,18 @@ def create_sc(appname='insertdata', master='yarn', deploymode='client',
 #----------------------------------------------------------------------
 def create_sql(sqlContext, tablename='genimages'):
     """"""
-    sqlContext.sql("CREATE EXTERNAL TABLE images5 \
-    (id INT COMMENT 'id of images', \
+    tables = sqlContext.sql("SHOW TABLES")
+    tables = tables.select('tableName').collect()
+    tables = [i.asDict().values() for i in tables]
+    if any([tablename in i for i in tables]):
+        sqlContext.sql("DROP TABLE %s" %tablename)
+    sqlContext.sql("CREATE EXTERNAL TABLE %s \
+    (id INT COMMENT 'id of genimages', \
     mat ARRAY<ARRAY<ARRAY<ARRAY<BIGINT>>>> \
     COMMENT 'array of list') COMMENT \
-    'This is used to store images' ROW FORMAT DELIMITED \
+    'This is used to store genimages' ROW FORMAT DELIMITED \
     FIELDS TERMINATED BY '\t' STORED AS TEXTFILE LOCATION \
-    'hdfs://master:9000/user/hive/%s'" %tablename)
+    'hdfs://master:9000/user/hive/%s'" %(tablename, tablename))
     sqlContext.sql("DESCRIBE TABLE %s" %tablename).show()
     
 #----------------------------------------------------------------------
