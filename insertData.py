@@ -53,9 +53,20 @@ def insert_images(sqlContext, width, height, cnt, tablename='genimages'):
     num = 0
     imagegen = gen(width=width, height=height)
     while num < cnt:
+        time0 = time.time()
         X, y = imagegen.next()
+        time1 = time.time()
+        print '\nstep 1 costs ', time1 - time0
+        
+        time0 = time.time()        
         newimages = sqlContext.createDataFrame([(num, X.tolist())], ['id', 'matrix'])
+        time1 = time.time()
+        print 'step 2 costs ', time1 - time0, '\n'
+    
+        time0 = time.time()         
         newimages.write.mode('append').insertInto(tablename)
+        time1 = time.time()
+        print 'step 3 costs ', time1 - time0, '\n'
         num += 1
         print num
     end_time = time.time()
@@ -65,6 +76,7 @@ def insert_images(sqlContext, width, height, cnt, tablename='genimages'):
     
 #----------------------------------------------------------------------
 def main():
+    os.system("rm /home/ubuntu/gtest/pySpark-Hive-sql/metastore_db/dbex.lck")
     sc, sqlContext = create_sc()
     create_sql(sqlContext)
     insert_images(sqlContext, width, height, 3000)
