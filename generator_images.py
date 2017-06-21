@@ -160,7 +160,8 @@ def captcha_draw(size_im, nb_cha, set_cha, fonts=None, overlap=0.1,
 def captcha_generator(width, 
                       height, 
                       batch_size=64,
-                      set_cha=chars
+                      set_cha=chars,
+                      font_dir='/home/ubuntu/fonts/english'
                       ):
     size_im = (width, height)
     overlaps = [0.0, 0.3, 0.6]
@@ -171,7 +172,6 @@ def captcha_generator(width,
     noises = [['line', 'point', 'sin']]
     rotates = [True, True]
     nb_chas = [4, 6]
-    font_dir = 'fonts/english'
     font_paths = []
     for dirpath, dirnames, filenames in os.walk(font_dir):
         for filename in filenames:
